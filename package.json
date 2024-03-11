@@ -55,7 +55,7 @@
     },
     "testEnvironment": "jsdom",
     "setupFilesAfterEnv": [
-      "./src/setupTests.ts"
+      "./src/app/setupTests.ts"
     ]
   }
 }
