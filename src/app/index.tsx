@@ -5,12 +5,15 @@ import "./global.css"
 import { TodosProvider } from "../entities/todo/api/TodosContext"
 import { RouterProvider } from "react-router-dom"
 import { router } from "./router"
+import { MuiThemeProvider } from "./theme"
 
 const App = () => (
   <React.StrictMode>
-    <TodosProvider>
-      <RouterProvider router={router}/>
-    </TodosProvider>
+    <MuiThemeProvider>
+      <TodosProvider>
+        <RouterProvider router={router} />
+      </TodosProvider>
+    </MuiThemeProvider>
   </React.StrictMode>
 )
 

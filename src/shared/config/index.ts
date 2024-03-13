@@ -1,1 +1,1 @@
-export { configLocalstorage } from "./configLocalstorage";
+export { configLocalstorage } from "./configLocalstorage"

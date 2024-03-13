@@ -1,3 +1,3 @@
 export const configLocalstorage = {
-    TODOS: 'todos'
+  TODOS: "todos"
 }
