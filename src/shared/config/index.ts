@@ -1,0 +1,1 @@
+export { configLocalstorage } from "./configLocalstorage";
