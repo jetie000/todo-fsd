@@ -3,7 +3,7 @@ import { MouseEvent } from "react"
 import AddIcon from "@mui/icons-material/Add"
 
 const style: SxProps = {
-  position: "absolute",
+  position: "fixed",
   bottom: "20px",
   right: "20px",
   borderRadius: "30px"

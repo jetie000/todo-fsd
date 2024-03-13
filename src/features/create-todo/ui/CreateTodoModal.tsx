@@ -1,4 +1,4 @@
-import { ITodoAddDto, TodosContext } from "@/entities/todo"
+import { ITodoAddEditDto, TodosContext } from "@/entities/todo"
 import { Box, Button, Fade, Modal, SxProps, TextField, Typography } from "@mui/material"
 import { FormEvent, useContext, useState } from "react"
 
@@ -28,20 +28,20 @@ interface CreateTodoModalProps {
 export function CreateTodoModal({ open, handleClose }: CreateTodoModalProps) {
   const { setTodos } = useContext(TodosContext)
   const [isError, setIsError] = useState(false)
-  const [todoInfo, setTodoInfo] = useState<ITodoAddDto>({ title: "", description: "" })
+  const [todoInfo, setTodoInfo] = useState<ITodoAddEditDto>({ title: "", description: "" })
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (todoInfo.title !== "") {
       setTodos(todos => [
-        ...todos,
         {
-          id: todos[todos.length - 1].id,
+          id: todos[0]?.id + 1 || 1,
           title: todoInfo.title,
           description: todoInfo.description,
           createdAt: new Date(),
           editedAt: new Date()
-        }
+        },
+        ...todos
       ])
       setTodoInfo({
         description: "",
