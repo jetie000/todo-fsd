@@ -1,4 +1,4 @@
-import { ITodoAddEditDto, TodosContext } from "@/entities/todo"
+import { ITodoAddEditDto, ITodoDetail, TodosContext } from "@/entities/todo"
 import { Box, Button, Fade, Modal, SxProps, TextField, Typography } from "@mui/material"
 import { FormEvent, useContext, useState } from "react"
 
@@ -20,34 +20,36 @@ const styleForm: SxProps = {
   flexDirection: "column"
 }
 
-interface CreateTodoModalProps {
+interface EditTodoModalProps {
   open: boolean
   handleClose: () => void
+  todo: ITodoDetail
 }
-
-export function CreateTodoModal({ open, handleClose }: CreateTodoModalProps) {
+export function EditTodoModal({ open, handleClose, todo }: EditTodoModalProps) {
   const { setTodos } = useContext(TodosContext)
   const [isError, setIsError] = useState(false)
-  const [todoInfo, setTodoInfo] = useState<ITodoAddEditDto>({ title: "", description: "" })
+  const [todoInfo, setTodoInfo] = useState<ITodoAddEditDto>({
+    title: todo.title,
+    description: todo.description
+  })
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (todoInfo.title !== "") {
-      setTodos(todos => [
-        {
-          id: todos[0]?.id + 1 || 1,
-          title: todoInfo.title,
-          description: todoInfo.description,
-          createdAt: new Date(),
-          editedAt: new Date()
-        },
-        ...todos
-      ])
-      setTodoInfo({
-        description: "",
-        title: ""
-      })
+      setTodos(todos =>
+        todos.map(t =>
+          t.id === todo.id
+            ? {
+                ...todo,
+                title: todoInfo.title,
+                description: todoInfo.description,
+                editedAt: new Date()
+              }
+            : t
+        )
+      )
       setIsError(false)
+      handleClose()
     } else setIsError(true)
   }
 
@@ -55,14 +57,14 @@ export function CreateTodoModal({ open, handleClose }: CreateTodoModalProps) {
     <Modal open={open} onClose={handleClose}>
       <Fade in={open}>
         <Box sx={styleBox}>
-          <Typography id="add-modal-title" variant="h5" component="h5" marginBottom={"15px"}>
-            Add todo
+          <Typography id="edit-modal-title" variant="h5" component="h5" marginBottom={"15px"}>
+            Edit todo
           </Typography>
           <form onSubmit={handleSubmit}>
             <Box sx={styleForm}>
               <TextField
                 error={isError}
-                id="add-todo-title"
+                id="edit-todo-title"
                 label="Title"
                 variant="outlined"
                 required
@@ -70,7 +72,7 @@ export function CreateTodoModal({ open, handleClose }: CreateTodoModalProps) {
                 onChange={e => setTodoInfo({ ...todoInfo, title: e.target.value })}
               />
               <TextField
-                id="add-todo-description"
+                id="edit-todo-description"
                 label="Description"
                 variant="outlined"
                 minRows={3}
@@ -79,7 +81,7 @@ export function CreateTodoModal({ open, handleClose }: CreateTodoModalProps) {
                 onChange={e => setTodoInfo({ ...todoInfo, description: e.target.value })}
               />
               <Button variant="contained" type="submit">
-                Add
+                Edit
               </Button>
             </Box>
           </form>

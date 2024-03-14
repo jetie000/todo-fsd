@@ -1,9 +1,14 @@
 import { CardInfo, TodosContext } from "@/entities/todo"
-import { Button, Card, CardActions, CardContent, Typography } from "@mui/material"
-import { useContext, useMemo } from "react"
+import { DeleteTodoButton } from "@/features/DeleteTodo"
+import { EditTodoButton, EditTodoModal } from "@/features/EditTodo"
+import { Card, CardActions, CardContent, Typography } from "@mui/material"
+import { useContext, useMemo, useState } from "react"
 import { useParams } from "react-router-dom"
 
 export function TodoCardDetail() {
+  const [open, setOpen] = useState(false)
+  const handleOpen = () => setOpen(true)
+  const handleClose = () => setOpen(false)
   const { todoId } = useParams()
   const { todos } = useContext(TodosContext)
 
@@ -14,12 +19,9 @@ export function TodoCardDetail() {
         <CardInfo todo={todo} />
       </CardContent>
       <CardActions>
-        <Button size="large" variant="outlined">
-          Edit
-        </Button>
-        <Button size="large" variant="outlined" color="error">
-          Delete
-        </Button>
+        <EditTodoButton handleOpen={handleOpen} />
+        <EditTodoModal handleClose={handleClose} open={open} todo={todo} />
+        <DeleteTodoButton todoId={todo.id} />
       </CardActions>
     </Card>
   ) : (

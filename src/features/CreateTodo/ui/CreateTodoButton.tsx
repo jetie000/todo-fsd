@@ -1,5 +1,4 @@
 import { IconButton, SxProps } from "@mui/material"
-import { MouseEvent } from "react"
 import AddIcon from "@mui/icons-material/Add"
 
 const style: SxProps = {
@@ -10,7 +9,7 @@ const style: SxProps = {
 }
 
 interface CreateTodoButtonProps {
-  handleOpen: (e: MouseEvent) => void
+  handleOpen: () => void
 }
 
 export function CreateTodoButton({ handleOpen }: CreateTodoButtonProps) {

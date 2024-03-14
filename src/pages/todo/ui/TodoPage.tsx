@@ -1,4 +1,4 @@
-import { ReturnToMainButton } from "@/features/ReturnToMainButton/ui/ReturnToMainButton"
+import { ReturnToMainButton } from "@/features/ReturnToMainButton"
 import { TodoCardDetail } from "@/widgets/TodoCardDetail"
 import { Box } from "@mui/material"
 
