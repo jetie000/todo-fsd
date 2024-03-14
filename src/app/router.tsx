@@ -13,7 +13,7 @@ export const router = createBrowserRouter([
     )
   },
   {
-    path: "/todos/:todoId",
+    path: "/todo/:todoId",
     element: (
       <Layout>
         <TodoPage />

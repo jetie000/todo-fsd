@@ -1,5 +1,4 @@
-import CreateTodoButton from "@/features/create-todo/ui/CreateTodoButton"
-import { CreateTodoModal } from "@/features/create-todo/ui/CreateTodoModal"
+import { CreateTodoButton, CreateTodoModal } from "@/features/CreateTodo"
 import { useState } from "react"
 
 export function CreateTodo() {

@@ -13,12 +13,10 @@ interface CreateTodoButtonProps {
   handleOpen: (e: MouseEvent) => void
 }
 
-function CreateTodoButton({ handleOpen }: CreateTodoButtonProps) {
+export function CreateTodoButton({ handleOpen }: CreateTodoButtonProps) {
   return (
     <IconButton size="large" color="info" sx={style} onClick={handleOpen}>
       <AddIcon fontSize="large" color="primary" />
     </IconButton>
   )
 }
-
-export default CreateTodoButton

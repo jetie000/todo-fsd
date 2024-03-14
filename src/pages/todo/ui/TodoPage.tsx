@@ -1,8 +1,16 @@
+import { ReturnToMainButton } from "@/features/ReturnToMainButton/ui/ReturnToMainButton"
+import { TodoCardDetail } from "@/widgets/TodoCardDetail"
 import { Box } from "@mui/material"
-import { useParams } from "react-router-dom"
 
 export function TodoPage() {
-  const { todoId } = useParams()
-
-  return <Box>{todoId}</Box>
+  return (
+    <Box display="flex" flexDirection="column" padding="2rem" width="100%">
+      <Box justifyContent="flex-start">
+        <ReturnToMainButton />
+      </Box>
+      <Box margin="auto">
+        <TodoCardDetail />
+      </Box>
+    </Box>
+  )
 }
