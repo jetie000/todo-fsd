@@ -1,4 +1,5 @@
 import { CreateTodoButton, CreateTodoModal } from "@/features/CreateTodo"
+import { Box } from "@mui/material"
 import { useState } from "react"
 
 export function CreateTodo() {
@@ -7,7 +8,9 @@ export function CreateTodo() {
   const handleClose = () => setOpen(false)
   return (
     <>
-      <CreateTodoButton handleOpen={handleOpen} />
+      <Box position="absolute" top="calc(100vh - 80px)" right="80px">
+        <CreateTodoButton handleOpen={handleOpen} />
+      </Box>
       <CreateTodoModal handleClose={handleClose} open={open} />
     </>
   )

@@ -1,4 +1,6 @@
 import { ITodoAddEditDto, ITodoDetail, TodosContext } from "@/entities/todo"
+import { OptionsContext } from "@/shared/api"
+import { languages } from "@/shared/config"
 import { Box, Button, Fade, Modal, SxProps, TextField, Typography } from "@mui/material"
 import { FormEvent, useContext, useState } from "react"
 
@@ -27,6 +29,7 @@ interface EditTodoModalProps {
 }
 export function EditTodoModal({ open, handleClose, todo }: EditTodoModalProps) {
   const { setTodos } = useContext(TodosContext)
+  const { language } = useContext(OptionsContext)
   const [isError, setIsError] = useState(false)
   const [todoInfo, setTodoInfo] = useState<ITodoAddEditDto>({
     title: todo.title,
@@ -58,14 +61,14 @@ export function EditTodoModal({ open, handleClose, todo }: EditTodoModalProps) {
       <Fade in={open}>
         <Box sx={styleBox}>
           <Typography id="edit-modal-title" variant="h5" component="h5" marginBottom={"15px"}>
-            Edit todo
+            {languages[language].EDIT_TODO}
           </Typography>
           <form onSubmit={handleSubmit}>
             <Box sx={styleForm}>
               <TextField
                 error={isError}
                 id="edit-todo-title"
-                label="Title"
+                label={languages[language].TITLE}
                 variant="outlined"
                 required
                 value={todoInfo?.title}
@@ -73,7 +76,7 @@ export function EditTodoModal({ open, handleClose, todo }: EditTodoModalProps) {
               />
               <TextField
                 id="edit-todo-description"
-                label="Description"
+                label={languages[language].DESCRIPTION}
                 variant="outlined"
                 minRows={3}
                 multiline
@@ -81,7 +84,7 @@ export function EditTodoModal({ open, handleClose, todo }: EditTodoModalProps) {
                 onChange={e => setTodoInfo({ ...todoInfo, description: e.target.value })}
               />
               <Button variant="contained" type="submit">
-                Edit
+                {languages[language].EDIT}
               </Button>
             </Box>
           </form>

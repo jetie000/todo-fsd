@@ -2,8 +2,12 @@ import { Button, Card, CardActions, CardContent, Typography } from "@mui/materia
 import { ITodoDetail } from "../model/todo-detail"
 import { intlFormatDistance } from "date-fns"
 import { useNavigate } from "react-router-dom"
+import { useContext } from "react"
+import { OptionsContext } from "@/shared/api"
+import { languages } from "@/shared/config"
 
 export function TodoCard({ todo }: { todo: ITodoDetail }) {
+  const { language } = useContext(OptionsContext)
   const navigate = useNavigate()
   const handleClick = () => navigate("/todo/" + todo.id)
   return (
@@ -14,13 +18,13 @@ export function TodoCard({ todo }: { todo: ITodoDetail }) {
         </Typography>
         <Typography gutterBottom variant="body1">
           {intlFormatDistance(todo.createdAt, Date.now(), {
-            locale: "en"
+            locale: language
           })}
         </Typography>
       </CardContent>
       <CardActions>
         <Button size="large" onClick={handleClick}>
-          Details
+          {languages[language].DETAILS}
         </Button>
       </CardActions>
     </Card>

@@ -1,6 +1,8 @@
 import { CardInfo, TodosContext } from "@/entities/todo"
 import { DeleteTodoButton } from "@/features/DeleteTodo"
 import { EditTodoButton, EditTodoModal } from "@/features/EditTodo"
+import { OptionsContext } from "@/shared/api"
+import { languages } from "@/shared/config"
 import { Card, CardActions, CardContent, Typography } from "@mui/material"
 import { useContext, useMemo, useState } from "react"
 import { useParams } from "react-router-dom"
@@ -11,6 +13,7 @@ export function TodoCardDetail() {
   const handleClose = () => setOpen(false)
   const { todoId } = useParams()
   const { todos } = useContext(TodosContext)
+  const { language } = useContext(OptionsContext)
 
   const todo = useMemo(() => todos.find(t => t.id === Number(todoId)), [todos])
   return todo ? (
@@ -25,6 +28,6 @@ export function TodoCardDetail() {
       </CardActions>
     </Card>
   ) : (
-    <Typography>Todo not found</Typography>
+    <Typography>{languages[language].TODO_NOT_FOUND}</Typography>
   )
 }

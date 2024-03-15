@@ -1,4 +1,6 @@
 import { ITodoAddEditDto, TodosContext } from "@/entities/todo"
+import { OptionsContext } from "@/shared/api"
+import { languages } from "@/shared/config"
 import { Box, Button, Fade, Modal, SxProps, TextField, Typography } from "@mui/material"
 import { FormEvent, useContext, useState } from "react"
 
@@ -29,6 +31,7 @@ export function CreateTodoModal({ open, handleClose }: CreateTodoModalProps) {
   const { setTodos } = useContext(TodosContext)
   const [isError, setIsError] = useState(false)
   const [todoInfo, setTodoInfo] = useState<ITodoAddEditDto>({ title: "", description: "" })
+  const { language } = useContext(OptionsContext)
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -56,14 +59,14 @@ export function CreateTodoModal({ open, handleClose }: CreateTodoModalProps) {
       <Fade in={open}>
         <Box sx={styleBox}>
           <Typography id="add-modal-title" variant="h5" component="h5" marginBottom={"15px"}>
-            Add todo
+            {languages[language].ADD_TODO}
           </Typography>
           <form onSubmit={handleSubmit}>
             <Box sx={styleForm}>
               <TextField
                 error={isError}
                 id="add-todo-title"
-                label="Title"
+                label={languages[language].TITLE}
                 variant="outlined"
                 required
                 value={todoInfo?.title}
@@ -71,7 +74,7 @@ export function CreateTodoModal({ open, handleClose }: CreateTodoModalProps) {
               />
               <TextField
                 id="add-todo-description"
-                label="Description"
+                label={languages[language].DESCRIPTION}
                 variant="outlined"
                 minRows={3}
                 multiline
@@ -79,7 +82,7 @@ export function CreateTodoModal({ open, handleClose }: CreateTodoModalProps) {
                 onChange={e => setTodoInfo({ ...todoInfo, description: e.target.value })}
               />
               <Button variant="contained" type="submit">
-                Add
+                {languages[language].ADD}
               </Button>
             </Box>
           </form>

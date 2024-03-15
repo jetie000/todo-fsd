@@ -1,16 +1,18 @@
-import { configLocalstorage } from "@/shared/config"
+import { configLocalstorage, languages } from "@/shared/config"
 import React, { SetStateAction, createContext, useEffect, useState } from "react"
 
 export const OptionsContext = createContext({
-  language: localStorage.getItem(configLocalstorage.LANGUAGE) || "en",
-  setLanguage: (_callback: SetStateAction<string>) => {}
+  language: (localStorage.getItem(configLocalstorage.LANGUAGE) as keyof typeof languages) || "en",
+  setLanguage: (_callback: SetStateAction<keyof typeof languages>) => {}
 })
 
 export const OptionsProvider = ({ children }: { children: React.ReactNode }) => {
-  const [language, setLanguage] = useState<string>(localStorage.getItem(configLocalstorage.LANGUAGE) || "en")
+  const [language, setLanguage] = useState<keyof typeof languages>(
+    (localStorage.getItem(configLocalstorage.LANGUAGE) as keyof typeof languages) || "en"
+  )
 
   useEffect(() => {
-    if (language) localStorage.setItem(configLocalstorage.LANGUAGE, JSON.stringify(language))
+    if (language) localStorage.setItem(configLocalstorage.LANGUAGE, language)
   }, [language])
 
   return (

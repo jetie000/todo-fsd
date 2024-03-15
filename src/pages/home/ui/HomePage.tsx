@@ -1,3 +1,4 @@
+import { ChangeLanguageButton } from "@/features/ChangeLanguage"
 import { CreateTodo } from "@/widgets/CreateTodo"
 import { TodoList } from "@/widgets/TodoList/ui/TodoList"
 import { Box } from "@mui/material"
@@ -14,6 +15,9 @@ export function HomePage() {
     >
       <TodoList />
       <CreateTodo />
+      <Box position="absolute" top="calc(100vh - 140px)" right="80px">
+        <ChangeLanguageButton />
+      </Box>
     </Box>
   )
 }
