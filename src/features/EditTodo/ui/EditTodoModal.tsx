@@ -1,5 +1,5 @@
 import { ITodoAddEditDto, ITodoDetail, TodosContext } from "@/entities/todo"
-import { OptionsContext } from "@/shared/api"
+import { OptionsContext, SnackbarContext } from "@/shared/api"
 import { languages } from "@/shared/config"
 import { Box, Button, Fade, Modal, SxProps, TextField, Typography } from "@mui/material"
 import { FormEvent, useContext, useState } from "react"
@@ -30,6 +30,7 @@ interface EditTodoModalProps {
 export function EditTodoModal({ open, handleClose, todo }: EditTodoModalProps) {
   const { setTodos } = useContext(TodosContext)
   const { language } = useContext(OptionsContext)
+  const { showSnackbar } = useContext(SnackbarContext)
   const [isError, setIsError] = useState(false)
   const [todoInfo, setTodoInfo] = useState<ITodoAddEditDto>({
     title: todo.title,
@@ -53,6 +54,7 @@ export function EditTodoModal({ open, handleClose, todo }: EditTodoModalProps) {
       )
       setIsError(false)
       handleClose()
+      showSnackbar(languages[language].TODO_EDITED)
     } else setIsError(true)
   }
 

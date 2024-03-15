@@ -12,7 +12,10 @@ export const languages = {
     TODO_NOT_FOUND: "Todo not found",
     NO_TODOS: "There are no todos yet",
     TITLE: "Title",
-    DESCRIPTION: "Description"
+    DESCRIPTION: "Description",
+    TODO_ADDED: "Todo added successfully",
+    TODO_EDITED: "Todo edited successfully",
+    TODO_DELETED: "Todo deleted successfully"
   },
   ru: {
     CREATED: "Создано",
@@ -27,6 +30,9 @@ export const languages = {
     TODO_NOT_FOUND: "Задача не найдена",
     NO_TODOS: "Пока нет задач",
     TITLE: "Название",
-    DESCRIPTION: "Описание"
+    DESCRIPTION: "Описание",
+    TODO_ADDED: "Задача успешно добавлена",
+    TODO_EDITED: "Задача успешно изменена",
+    TODO_DELETED: "Задача успешно удалена"
   }
 }

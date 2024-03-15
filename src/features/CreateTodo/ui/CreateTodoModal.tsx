@@ -1,5 +1,5 @@
 import { ITodoAddEditDto, TodosContext } from "@/entities/todo"
-import { OptionsContext } from "@/shared/api"
+import { OptionsContext, SnackbarContext } from "@/shared/api"
 import { languages } from "@/shared/config"
 import { Box, Button, Fade, Modal, SxProps, TextField, Typography } from "@mui/material"
 import { FormEvent, useContext, useState } from "react"
@@ -29,6 +29,7 @@ interface CreateTodoModalProps {
 
 export function CreateTodoModal({ open, handleClose }: CreateTodoModalProps) {
   const { setTodos } = useContext(TodosContext)
+  const { showSnackbar } = useContext(SnackbarContext)
   const [isError, setIsError] = useState(false)
   const [todoInfo, setTodoInfo] = useState<ITodoAddEditDto>({ title: "", description: "" })
   const { language } = useContext(OptionsContext)
@@ -51,6 +52,7 @@ export function CreateTodoModal({ open, handleClose }: CreateTodoModalProps) {
         title: ""
       })
       setIsError(false)
+      showSnackbar(languages[language].TODO_ADDED)
     } else setIsError(true)
   }
 

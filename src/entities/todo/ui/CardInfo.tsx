@@ -18,7 +18,7 @@ export function CardInfo({ todo }: { todo: ITodoDetail }) {
           intlFormatDistance(todo.createdAt, Date.now(), { locale: language })}
       </Typography>
       <Typography gutterBottom variant="body1">
-        {languages[language].CREATED +
+        {languages[language].EDITED +
           ": " +
           intlFormatDistance(todo.editedAt, Date.now(), {
             locale: language

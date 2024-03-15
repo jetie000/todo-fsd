@@ -1,23 +1,26 @@
 import { HomePage } from "@/pages/home"
 import { TodoPage } from "@/pages/todo"
 import { Layout } from "@/shared/ui"
-import { createBrowserRouter } from "react-router-dom"
+import { MySnackbar } from "@/widgets/Snackbar"
+import { Outlet, createBrowserRouter } from "react-router-dom"
 
 export const router = createBrowserRouter([
   {
-    path: "/",
     element: (
       <Layout>
-        <HomePage />
+        <Outlet />
+        <MySnackbar />
       </Layout>
-    )
-  },
-  {
-    path: "/todo/:todoId",
-    element: (
-      <Layout>
-        <TodoPage />
-      </Layout>
-    )
+    ),
+    children: [
+      {
+        path: "/",
+        element: <HomePage />
+      },
+      {
+        path: "/todo/:todoId",
+        element: <TodoPage />
+      }
+    ]
   }
 ])
