@@ -61,9 +61,6 @@ module.exports = (_, argv) => ({
     new HtmlWebPackPlugin({
       template: "./index.html",
       publicPath: '/'
-    }),
-    new Dotenv({
-      systemvars: true
     })
   ],
 });

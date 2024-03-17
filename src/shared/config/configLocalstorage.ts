@@ -1,4 +1,4 @@
-export const configLocalstorage = {
-  TODOS: "todos",
-  LANGUAGE: "language"
+export enum configLocalstorage {
+  TODOS = "todos",
+  LANGUAGE = "language"
 };
