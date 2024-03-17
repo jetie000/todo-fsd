@@ -12,12 +12,12 @@ export const TodosProvider = ({ children }: { children: React.ReactNode }) => {
     JSON.parse(localStorage.getItem(configLocalstorage.TODOS) ?? "[]") as ITodoDetail[]
   )
 
-  const contextValue = useMemo( //?????????
+  const contextValue = useMemo(
     () => ({
       todos,
       setTodos
     }),
-    [todos, setTodos]
+    [todos]
   )
 
   useEffect(() => {
