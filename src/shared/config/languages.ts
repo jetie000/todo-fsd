@@ -35,4 +35,4 @@ export const languages = {
     TODO_EDITED: "Задача успешно изменена",
     TODO_DELETED: "Задача успешно удалена"
   }
-}
+};

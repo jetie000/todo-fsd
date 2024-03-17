@@ -1,7 +1,7 @@
-import { ChangeLanguageButton } from "@/features/ChangeLanguage"
-import { CreateTodo } from "@/widgets/CreateTodo"
-import { TodoList } from "@/widgets/TodoList/ui/TodoList"
-import { Box } from "@mui/material"
+import { ChangeLanguageButton } from "@/features/ChangeLanguage";
+import { CreateTodo } from "@/widgets/CreateTodo";
+import { TodoList } from "@/widgets/TodoList/ui/TodoList";
+import { Box } from "@mui/material";
 
 export function HomePage() {
   return (
@@ -19,5 +19,5 @@ export function HomePage() {
         <ChangeLanguageButton />
       </Box>
     </Box>
-  )
+  );
 }

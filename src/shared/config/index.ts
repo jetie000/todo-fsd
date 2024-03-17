@@ -1,2 +1,2 @@
-export { configLocalstorage } from "./configLocalstorage"
-export { languages } from "./languages"
+export { configLocalstorage } from "./configLocalstorage";
+export { languages } from "./languages";

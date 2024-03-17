@@ -1,15 +1,15 @@
-import { SnackbarContext } from "@/shared/api"
-import { IconButton, Snackbar, SxProps } from "@mui/material"
-import CloseIcon from "@mui/icons-material/Close"
-import { useContext } from "react"
+import { SnackbarContext } from "@/shared/api";
+import { IconButton, Snackbar, SxProps } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import { useContext } from "react";
 
 const style: SxProps = {
   backgroundColor: "white",
   color: "black"
-}
+};
 
 export function MySnackbar() {
-  const { isOpen, closeSnackbar, text } = useContext(SnackbarContext)
+  const { isOpen, closeSnackbar, text } = useContext(SnackbarContext);
   return (
     <Snackbar
       open={isOpen}
@@ -23,5 +23,5 @@ export function MySnackbar() {
         </IconButton>
       }
     />
-  )
+  );
 }

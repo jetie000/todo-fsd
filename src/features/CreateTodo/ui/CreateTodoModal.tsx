@@ -1,8 +1,8 @@
-import { ITodoAddEditDto, TodosContext } from "@/entities/todo"
-import { OptionsContext, SnackbarContext } from "@/shared/api"
-import { languages } from "@/shared/config"
-import { Box, Button, Fade, Modal, SxProps, TextField, Typography } from "@mui/material"
-import { FormEvent, useContext, useState } from "react"
+import { ITodoAddEditDto, TodosContext } from "@/entities/todo";
+import { OptionsContext, SnackbarContext } from "@/shared/api";
+import { languages } from "@/shared/config";
+import { Box, Button, Fade, Modal, SxProps, TextField, Typography } from "@mui/material";
+import { FormEvent, useContext, useState } from "react";
 
 const styleBox: SxProps = {
   position: "absolute",
@@ -14,28 +14,28 @@ const styleBox: SxProps = {
   boxShadow: 24,
   p: 4,
   borderRadius: "10px"
-}
+};
 
 const styleForm: SxProps = {
   display: "flex",
   gap: "20px",
   flexDirection: "column"
-}
+};
 
 interface CreateTodoModalProps {
-  open: boolean
-  handleClose: () => void
+  open: boolean;
+  handleClose: () => void;
 }
 
 export function CreateTodoModal({ open, handleClose }: CreateTodoModalProps) {
-  const { setTodos } = useContext(TodosContext)
-  const { showSnackbar } = useContext(SnackbarContext)
-  const [isError, setIsError] = useState(false)
-  const [todoInfo, setTodoInfo] = useState<ITodoAddEditDto>({ title: "", description: "" })
-  const { language } = useContext(OptionsContext)
+  const { setTodos } = useContext(TodosContext);
+  const { showSnackbar } = useContext(SnackbarContext);
+  const [isError, setIsError] = useState(false);
+  const [todoInfo, setTodoInfo] = useState<ITodoAddEditDto>({ title: "", description: "" });
+  const { language } = useContext(OptionsContext);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+    e.preventDefault();
     if (todoInfo.title !== "") {
       setTodos(todos => [
         {
@@ -46,15 +46,17 @@ export function CreateTodoModal({ open, handleClose }: CreateTodoModalProps) {
           editedAt: new Date()
         },
         ...todos
-      ])
+      ]);
       setTodoInfo({
         description: "",
         title: ""
-      })
-      setIsError(false)
-      showSnackbar(languages[language].TODO_ADDED)
-    } else setIsError(true)
-  }
+      });
+      setIsError(false);
+      showSnackbar(languages[language].TODO_ADDED);
+    } else {
+      setIsError(true);
+    }
+  };
 
   return (
     <Modal open={open} onClose={handleClose}>
@@ -91,5 +93,5 @@ export function CreateTodoModal({ open, handleClose }: CreateTodoModalProps) {
         </Box>
       </Fade>
     </Modal>
-  )
+  );
 }

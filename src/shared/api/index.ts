@@ -1,2 +1,2 @@
-export { OptionsProvider, OptionsContext } from "./OptionsContext"
-export { SnackbarContext, SnackbarProvider } from "./SnackbarContext"
+export { OptionsProvider, OptionsContext } from "./OptionsContext";
+export { SnackbarContext, SnackbarProvider } from "./SnackbarContext";

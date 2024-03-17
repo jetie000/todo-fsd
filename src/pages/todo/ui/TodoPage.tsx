@@ -1,6 +1,6 @@
-import { ReturnToMainButton } from "@/features/ReturnToMainButton"
-import { TodoCardDetail } from "@/widgets/TodoCardDetail"
-import { Box } from "@mui/material"
+import { ReturnToMainButton } from "@/features/ReturnToMainButton";
+import { TodoCardDetail } from "@/widgets/TodoCardDetail";
+import { Box } from "@mui/material";
 
 export function TodoPage() {
   return (
@@ -12,5 +12,5 @@ export function TodoPage() {
         <TodoCardDetail />
       </Box>
     </Box>
-  )
+  );
 }

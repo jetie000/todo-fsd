@@ -1,14 +1,17 @@
-import { Grid, Typography } from "@mui/material"
-import { TodoCard, TodosContext } from "@/entities/todo"
-import { useContext, useMemo } from "react"
-import { OptionsContext } from "@/shared/api"
-import { languages } from "@/shared/config"
+import { Grid, Typography } from "@mui/material";
+import { TodoCard, TodosContext } from "@/entities/todo";
+import { useContext, useMemo } from "react";
+import { OptionsContext } from "@/shared/api";
+import { languages } from "@/shared/config";
 
 export function TodoList() {
-  const { todos } = useContext(TodosContext)
-  const { language } = useContext(OptionsContext)
+  const { todos } = useContext(TodosContext);
+  const { language } = useContext(OptionsContext);
 
-  const todosSorted = useMemo(() => [...todos].sort((todo1, todo2) => todo2.id - todo1.id), [todos])
+  const todosSorted = useMemo(
+    () => [...todos].sort((todo1, todo2) => todo2.id - todo1.id),
+    [todos]
+  );
   return (
     <Grid container spacing={{ xs: 2, md: 3 }} alignItems="center">
       {todosSorted.length > 0 ? (
@@ -23,5 +26,5 @@ export function TodoList() {
         </Typography>
       )}
     </Grid>
-  )
+  );
 }

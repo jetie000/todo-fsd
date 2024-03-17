@@ -1,8 +1,8 @@
-import { ITodoAddEditDto, ITodoDetail, TodosContext } from "@/entities/todo"
-import { OptionsContext, SnackbarContext } from "@/shared/api"
-import { languages } from "@/shared/config"
-import { Box, Button, Fade, Modal, SxProps, TextField, Typography } from "@mui/material"
-import { FormEvent, useContext, useState } from "react"
+import { ITodoAddEditDto, ITodoDetail, TodosContext } from "@/entities/todo";
+import { OptionsContext, SnackbarContext } from "@/shared/api";
+import { languages } from "@/shared/config";
+import { Box, Button, Fade, Modal, SxProps, TextField, Typography } from "@mui/material";
+import { FormEvent, useCallback, useContext, useState } from "react";
 
 const styleBox: SxProps = {
   position: "absolute",
@@ -14,50 +14,55 @@ const styleBox: SxProps = {
   boxShadow: 24,
   p: 4,
   borderRadius: "10px"
-}
+};
 
 const styleForm: SxProps = {
   display: "flex",
   gap: "20px",
   flexDirection: "column"
-}
+};
 
 interface EditTodoModalProps {
-  open: boolean
-  handleClose: () => void
-  todo: ITodoDetail
+  open: boolean;
+  handleClose: () => void;
+  todo: ITodoDetail;
 }
 export function EditTodoModal({ open, handleClose, todo }: EditTodoModalProps) {
-  const { setTodos } = useContext(TodosContext)
-  const { language } = useContext(OptionsContext)
-  const { showSnackbar } = useContext(SnackbarContext)
-  const [isError, setIsError] = useState(false)
+  const { setTodos } = useContext(TodosContext);
+  const { language } = useContext(OptionsContext);
+  const { showSnackbar } = useContext(SnackbarContext);
+  const [isError, setIsError] = useState(false);
   const [todoInfo, setTodoInfo] = useState<ITodoAddEditDto>({
     title: todo.title,
     description: todo.description
-  })
+  });
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+    e.preventDefault();
     if (todoInfo.title !== "") {
-      setTodos(todos => editTodos(todos))
-      setIsError(false)
-      handleClose()
-      showSnackbar(languages[language].TODO_EDITED)
-    } else setIsError(true)
-  }
+      setTodos(todos => editTodos(todos));
+      setIsError(false);
+      handleClose();
+      showSnackbar(languages[language].TODO_EDITED);
+    } else {
+      setIsError(true);
+    }
+  };
 
-  const editTodos = (todos: ITodoDetail[]) =>
-    todos.map(t =>
-      t.id === todo.id
-        ? {
-            ...todo,
-            title: todoInfo.title,
-            description: todoInfo.description,
-            editedAt: new Date()
-          }
-        : t
-    )
+  const editTodos = useCallback(
+    (todos: ITodoDetail[]) =>
+      todos.map(t =>
+        t.id === todo.id
+          ? {
+              ...todo,
+              title: todoInfo.title,
+              description: todoInfo.description,
+              editedAt: new Date()
+            }
+          : t
+      ),
+    [todoInfo]
+  );
 
   return (
     <Modal open={open} onClose={handleClose}>
@@ -94,5 +99,5 @@ export function EditTodoModal({ open, handleClose, todo }: EditTodoModalProps) {
         </Box>
       </Fade>
     </Modal>
-  )
+  );
 }

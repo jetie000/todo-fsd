@@ -1,1 +1,1 @@
-export { TodoCardDetail } from "./ui/TodoCardDetail"
+export { TodoCardDetail } from "./ui/TodoCardDetail";
