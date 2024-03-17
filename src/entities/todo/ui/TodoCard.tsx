@@ -9,7 +9,7 @@ import { languages } from "@/shared/config"
 export function TodoCard({ todo }: { todo: ITodoDetail }) {
   const { language } = useContext(OptionsContext)
   const navigate = useNavigate()
-  const handleClick = () => navigate("/todo/" + todo.id)
+  const handleClick = () => navigate(`/todo/${todo.id}`)
   return (
     <Card>
       <CardContent>

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "build": "webpack --mode production",
+    "build-stats": "webpack --profile --json > ./dist/stats.json",
     "build:dev": "webpack --mode development",
     "build:start": "cd dist && PORT=3000 npx serve",
     "start": "webpack serve --open --mode development",
@@ -10,7 +11,8 @@
     "lint": "npx eslint ./src",
     "fix": "npx eslint ./src --fix",
     "format": "npx prettier ./src --write",
-    "test": "jest"
+    "test": "jest",
+    "run-webpack-bundle-analyzer": "webpack-bundle-analyzer ./dist/stats.json"
   },
   "license": "MIT",
   "devDependencies": {
@@ -39,6 +41,7 @@
     "style-loader": "^3.3.0",
     "typescript": "^4.5.2",
     "webpack": "^5.57.1",
+    "webpack-bundle-analyzer": "^4.10.1",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.3.1",
     "whatwg-fetch": "^3.6.20"

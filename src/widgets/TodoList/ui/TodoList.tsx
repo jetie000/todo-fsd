@@ -8,7 +8,7 @@ export function TodoList() {
   const { todos } = useContext(TodosContext)
   const { language } = useContext(OptionsContext)
 
-  const todosSorted = useMemo(() => todos.sort((todo1, todo2) => todo2.id - todo1.id), [todos])
+  const todosSorted = useMemo(() => [...todos].sort((todo1, todo2) => todo2.id - todo1.id), [todos])
   return (
     <Grid container spacing={{ xs: 2, md: 3 }} alignItems="center">
       {todosSorted.length > 0 ? (
@@ -18,7 +18,7 @@ export function TodoList() {
           </Grid>
         ))
       ) : (
-        <Typography variant="h4" margin="auto" textAlign={"center"} marginTop="2rem">
+        <Typography variant="h4" margin="auto" textAlign="center" marginTop="2rem">
           {languages[language].NO_TODOS}
         </Typography>
       )}

@@ -3,13 +3,13 @@ import React, { SetStateAction, createContext, useEffect, useState } from "react
 import { ITodoDetail } from "../model/todo-detail"
 
 export const TodosContext = createContext({
-  todos: JSON.parse(localStorage.getItem(configLocalstorage.TODOS) || "[]") as ITodoDetail[],
+  todos: JSON.parse(localStorage.getItem(configLocalstorage.TODOS) ?? "[]") as ITodoDetail[],
   setTodos: (_callback: SetStateAction<ITodoDetail[]>) => {}
 })
 
 export const TodosProvider = ({ children }: { children: React.ReactNode }) => {
   const [todos, setTodos] = useState<ITodoDetail[]>(
-    JSON.parse(localStorage.getItem(configLocalstorage.TODOS) || "[]") as ITodoDetail[]
+    JSON.parse(localStorage.getItem(configLocalstorage.TODOS) ?? "[]") as ITodoDetail[]
   )
 
   useEffect(() => {

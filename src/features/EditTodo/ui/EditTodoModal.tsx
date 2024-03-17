@@ -40,29 +40,30 @@ export function EditTodoModal({ open, handleClose, todo }: EditTodoModalProps) {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (todoInfo.title !== "") {
-      setTodos(todos =>
-        todos.map(t =>
-          t.id === todo.id
-            ? {
-                ...todo,
-                title: todoInfo.title,
-                description: todoInfo.description,
-                editedAt: new Date()
-              }
-            : t
-        )
-      )
+      setTodos(todos => editTodos(todos))
       setIsError(false)
       handleClose()
       showSnackbar(languages[language].TODO_EDITED)
     } else setIsError(true)
   }
 
+  const editTodos = (todos: ITodoDetail[]) =>
+    todos.map(t =>
+      t.id === todo.id
+        ? {
+            ...todo,
+            title: todoInfo.title,
+            description: todoInfo.description,
+            editedAt: new Date()
+          }
+        : t
+    )
+
   return (
     <Modal open={open} onClose={handleClose}>
       <Fade in={open}>
         <Box sx={styleBox}>
-          <Typography id="edit-modal-title" variant="h5" component="h5" marginBottom={"15px"}>
+          <Typography id="edit-modal-title" variant="h5" component="h5" marginBottom="15px">
             {languages[language].EDIT_TODO}
           </Typography>
           <form onSubmit={handleSubmit}>

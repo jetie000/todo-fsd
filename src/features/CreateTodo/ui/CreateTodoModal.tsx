@@ -60,7 +60,7 @@ export function CreateTodoModal({ open, handleClose }: CreateTodoModalProps) {
     <Modal open={open} onClose={handleClose}>
       <Fade in={open}>
         <Box sx={styleBox}>
-          <Typography id="add-modal-title" variant="h5" component="h5" marginBottom={"15px"}>
+          <Typography id="add-modal-title" variant="h5" component="h5" marginBottom="15px">
             {languages[language].ADD_TODO}
           </Typography>
           <form onSubmit={handleSubmit}>
