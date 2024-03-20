@@ -1,12 +1,13 @@
 import { Grid, Typography } from "@mui/material";
-import { TodoCard, TodosContext } from "@/entities/todo";
-import { useContext, useMemo } from "react";
-import { OptionsContext } from "@/shared/api";
+import { TodoCard } from "@/entities/todo";
+import { useMemo } from "react";
+import { RootStateStore } from "@/shared/api";
 import { languages } from "@/shared/config";
+import { useSelector } from "react-redux";
 
 export function TodoList() {
-  const { todos } = useContext(TodosContext);
-  const { language } = useContext(OptionsContext);
+  const { todos } = useSelector((state: RootStateStore) => state.todos);
+  const { language } = useSelector((state: RootStateStore) => state.options);
 
   const todosSorted = useMemo(
     () => [...todos].sort((todo1, todo2) => todo2.id - todo1.id),

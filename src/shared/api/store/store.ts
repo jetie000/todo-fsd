@@ -1,19 +1,22 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit"
-import { reducer as userReducer } from "./slices/todosSlice"
-import { reducer as toastReducer } from "./slices/snackbarSlice"
-import { reducer as optionsReducer } from "./slices/optionsSlice"
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { todosReducer } from "./slices/todosSlice";
+import { snackbarReducer } from "./slices/snackbarSlice";
+import { optionsReducer } from "./slices/optionsSlice";
 
 const reducers = combineReducers({
-  user: userReducer,
-  toast: toastReducer,
+  todos: todosReducer,
+  snackbar: snackbarReducer,
   options: optionsReducer
-})
+});
 
 export const store = configureStore({
   reducer: reducers,
   devTools: process.env.NODE_ENV === "development",
-  middleware: getDefaultMiddleware => getDefaultMiddleware()
-})
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: false
+    })
+});
 
-export type RootStateStore = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
+export type RootStateStore = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

@@ -20,4 +20,4 @@ export const optionsSlice = createSlice({
   }
 });
 
-export const { actions, reducer } = optionsSlice;
+export const { actions: optionsActions, reducer: optionsReducer } = optionsSlice;

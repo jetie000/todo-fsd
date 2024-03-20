@@ -1,8 +1,10 @@
-import { ITodoAddEditDto, TodosContext } from "@/entities/todo";
-import { OptionsContext, SnackbarContext } from "@/shared/api";
+import { ITodoAddEditDto } from "@/entities/todo";
+import { RootStateStore } from "@/shared/api";
 import { languages } from "@/shared/config";
+import { useActions } from "@/shared/hooks";
 import { Box, Button, Fade, Modal, SxProps, TextField, Typography } from "@mui/material";
-import { FormEvent, useContext, useState } from "react";
+import { FormEvent, useState } from "react";
+import { useSelector } from "react-redux";
 
 const styleBox: SxProps = {
   position: "absolute",
@@ -28,11 +30,10 @@ interface CreateTodoModalProps {
 }
 
 export function CreateTodoModal({ open, handleClose }: CreateTodoModalProps) {
-  const { setTodos } = useContext(TodosContext);
-  const { showSnackbar } = useContext(SnackbarContext);
+  const { setTodos, showSnackbar } = useActions();
   const [isError, setIsError] = useState(false);
   const [todoInfo, setTodoInfo] = useState<ITodoAddEditDto>({ title: "", description: "" });
-  const { language } = useContext(OptionsContext);
+  const { language } = useSelector((state: RootStateStore) => state.options);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

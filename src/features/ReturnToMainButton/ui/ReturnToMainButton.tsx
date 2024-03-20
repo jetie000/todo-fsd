@@ -1,13 +1,13 @@
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import { useContext } from "react";
-import { OptionsContext } from "@/shared/api";
+import { RootStateStore } from "@/shared/api";
 import { languages } from "@/shared/config";
+import { useSelector } from "react-redux";
 
 export function ReturnToMainButton() {
   const navigate = useNavigate();
-  const { language } = useContext(OptionsContext);
+  const { language } = useSelector((state: RootStateStore) => state.options);
   const handleNavigate = () => navigate("/");
 
   return (

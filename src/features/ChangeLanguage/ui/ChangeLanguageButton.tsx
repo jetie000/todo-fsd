@@ -1,7 +1,8 @@
 import { IconButton, SxProps } from "@mui/material";
-import { useContext } from "react";
-import { OptionsContext } from "@/shared/api";
 import { languages } from "@/shared/config";
+import { useSelector } from "react-redux";
+import { RootStateStore } from "@/shared/api";
+import { useActions } from "@/shared/hooks";
 
 const style: SxProps = {
   position: "fixed",
@@ -11,7 +12,8 @@ const style: SxProps = {
 };
 
 export function ChangeLanguageButton() {
-  const { language, setLanguage } = useContext(OptionsContext);
+  const { language } = useSelector((state: RootStateStore) => state.options);
+  const { setLanguage } = useActions();
 
   const handleChangeLang = () => {
     const langs = Object.keys(languages) as (keyof typeof languages)[];

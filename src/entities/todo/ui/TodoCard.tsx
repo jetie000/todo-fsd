@@ -2,12 +2,12 @@ import { Button, Card, CardActions, CardContent, Typography } from "@mui/materia
 import { ITodoDetail } from "../model/todo-detail";
 import { intlFormatDistance } from "date-fns";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { OptionsContext } from "@/shared/api";
 import { languages } from "@/shared/config";
+import { RootStateStore } from "@/shared/api";
+import { useSelector } from "react-redux";
 
 export function TodoCard({ todo }: { todo: ITodoDetail }) {
-  const { language } = useContext(OptionsContext);
+  const { language } = useSelector((state: RootStateStore) => state.options);
   const navigate = useNavigate();
   const handleClick = () => navigate(`/todo/${todo.id}`);
 

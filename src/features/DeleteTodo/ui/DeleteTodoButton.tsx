@@ -1,14 +1,13 @@
 import { Button } from "@mui/material";
-import { useContext } from "react";
-import { TodosContext } from "@/entities/todo";
 import { useNavigate } from "react-router-dom";
-import { OptionsContext, SnackbarContext } from "@/shared/api";
+import { RootStateStore } from "@/shared/api";
 import { languages } from "@/shared/config";
+import { useSelector } from "react-redux";
+import { useActions } from "@/shared/hooks";
 
 export function DeleteTodoButton({ todoId }: { todoId: number }) {
-  const { setTodos } = useContext(TodosContext);
-  const { language } = useContext(OptionsContext);
-  const { showSnackbar } = useContext(SnackbarContext);
+  const { setTodos, showSnackbar } = useActions();
+  const { language } = useSelector((state: RootStateStore) => state.options);
   const navigate = useNavigate();
 
   const handleDelete = () => {
