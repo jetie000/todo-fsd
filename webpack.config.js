@@ -12,7 +12,6 @@ module.exports = (_, argv) => ({
     },
     extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
   },
-
   devServer: {
     port: 3000,
     historyApiFallback: true,
@@ -60,7 +59,7 @@ module.exports = (_, argv) => ({
       },
     }),
     new HtmlWebPackPlugin({
-      template: "./src/index.html",
+      template: "./index.html",
       publicPath: '/'
     }),
     new Dotenv({

@@ -45,8 +45,14 @@
   },
   "dependencies": {
     "@babel/plugin-transform-react-jsx": "^7.23.4",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.15.12",
+    "@mui/material": "^5.15.12",
+    "date-fns": "^3.4.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.3"
   },
   "jest": {
     "moduleNameMapper": {
@@ -55,7 +61,7 @@
     },
     "testEnvironment": "jsdom",
     "setupFilesAfterEnv": [
-      "./src/setupTests.ts"
+      "./src/app/setupTests.ts"
     ]
   }
 }
